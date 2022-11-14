@@ -31,17 +31,19 @@ A review of the paper : "An Online Learning Approach to Generative Adversarial N
 - The analysis enables us to get some effcient heuristic while training the standard GAN.
 
 - Algorithm (Analysis point of view):
+![Screenshot from 2022-11-10 23-57-07](https://user-images.githubusercontent.com/113635391/201581223-b7e50eac-4036-4f01-a4ad-861178655a7f.png)
 
-# image 1
+
 
 
 - Algorithm(implementation point of view):
 
+![Screenshot from 2022-11-10 23-57-28](https://user-images.githubusercontent.com/113635391/201581232-a8162235-aa9d-407e-ae4d-1d1d301b1bef.png)
 
 
 
 
-# image 2
+
 
 Important obervation:<br />
 
