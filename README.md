@@ -14,13 +14,13 @@ The goal of the generator network is to generate samples that are indistinguisha
 
 - Notation and Terminology : <br />
 
-$$\left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \left( \sum_{k=1}^n b_k^2 \right)$$
+<!-- $$\left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \left( \sum_{k=1}^n b_k^2 \right)$$ -->
 
-<!-- Let us denote the data distribution by $$\pdata(\x)$$ and the model distribution by $p_\u(\x)$. A probabilistic discriminator is denoted by $h_\v: \x \to [0;1]$ and a generator by $G_\u: \z \to \x$. The GAN objective is:
+Let us denote the data distribution by $\pdata(\x)$ and the model distribution by $p_\u(\x)$. A probabilistic discriminator is denoted by $h_\v: \x \to [0;1]$ and a generator by $G_\u: \z \to \x$. The GAN objective is:
 \begin{align}
 \min_{\u} \max_{\v}M(\u,\v) &= \frac 12 \E_{\x \sim \pdata} \log h_\v(\x) + \frac 12 \E_{\z \sim p_\z} \log (1-h_\v(G_\u(\z)))~.
 \label{eq:GAN_objective}
-\end{align} -->
+\end{align}
 
 
 
