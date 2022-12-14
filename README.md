@@ -19,7 +19,10 @@ There are two networks named generator and discriminator, which are fully parame
 - Notation and Terminology : 
 
 	Let us denote the data distribution by $P data(x)$ and the model distribution by $P_u(x)$. A probabilistic discriminator is denoted by $h_v: x \to [0;1]$ and a generator by $G_u: z \to x$. The GAN objective is:
-    Put the equation here.
+<center>
+<img width="406" align="center" alt="Screenshot 2022-12-14 at 11 42 07 AM" src="https://user-images.githubusercontent.com/113635391/207520244-fe25acad-5fe8-41bc-b547-e774f3794eb4.png">
+</center>
+
      
 - Important observations regarding GAN : 
 
@@ -38,8 +41,7 @@ There are two networks named generator and discriminator, which are fully parame
 	We need to alternatively update the parameters of both blocks. Here we could use SGD to update. By training the vanilla GAN, I understood that the hyperparameters and the initial parameter values play are essential in determining various aspects such as stability, sample diversity etc. I have given a simple version of the algorithm in the figure :
 
   
-
-	Algorithm: 
+<img width="680" alt="Screenshot 2022-12-13 at 1 50 41 AM" src="https://user-images.githubusercontent.com/113635391/207520513-b8a58d5d-84c7-43e8-9a78-99cb160b8edb.png">
 
   
 
@@ -59,10 +61,13 @@ I assume the reader is familiar with the definition of the following terms: Two 
 
 ### 1. Eps-MSNE :
 
+<img width="676" alt="Screenshot 2022-12-13 at 1 48 35 AM" src="https://user-images.githubusercontent.com/113635391/207537160-4390c84f-2cdf-43ce-805d-64b9cfc93444.png">
+
 
 
 ### 3. GAN classification based on architecture:
-	Put the image here.
+	
+<img width="703" alt="Screenshot 2022-12-13 at 1 58 09 AM" src="https://user-images.githubusercontent.com/113635391/207520622-c18c9dc9-cd09-4a2b-9c31-e296f7c2ff42.png">
 
 	But the basic info here.
 
@@ -80,8 +85,9 @@ I assume the reader is familiar with the definition of the following terms: Two 
 # Contribution-Theory side :
 
 - For a semi-shallow architecture for GAN, the game structure it induces is a semi-concave game when the appropriate choice of activation function is made. By semi-concave, I mean that the objective function is concave with respect to the discriminator.
-- The authors propose an algorithm which builds on top of Schapire's work on the Computation of MSNE. The following is the algorithm to find the MSNE:
-		image for the algorithm_1
+- The authors propose an algorithm which builds on top of Schapire's work on the Computation of MSNE. The following is the algorithm to find the MSNE:<img width="685" alt="Screenshot 2022-12-13 at 2 35 46 AM" src="https://user-images.githubusercontent.com/113635391/207521132-8038ad29-10b8-4092-83d4-a49f0f4cd7eb.png">
+
+		
 - In this particular setting(semi-shallow GAN), the authors are able to prove the convergence of the algorithm. Here I will provide a proof sketch: 
 
 The proof makes  use of a theorem due to Schapire, which shows that if both $A_1$ and $A_2$ ensure no-regret then it implies convergence to approximate MNE. Since the game is concave with respect to $P_2$, it is well known that the FTRL version $A_2$  appearing in Thm is a no-regret strategy. The challenge  is therefore to show that $A_1$ is also a no-regret strategy. This is non-trivial, especially for semi-concave games that do not necessarily  have any special structure with respect to the generator.However, the loss sequence received by the generator is not arbitrary but rather it follows a special sequence based on the choices of the discriminator, $\{f_t(\cdot) = M(\cdot,v_t)\}_{t}$.  In the  case of semi-concave games, the sequence of discriminator decisions, $\{v_t\}_{t}$ has a special property which "stabilizes" the loss sequence $\{f_t\}_{t}$, which in turn enables us to  establish no-regret for $A_1$.
@@ -113,6 +119,7 @@ The following assumptions/restrictions are taken while proposing the practical v
 ## Algorithm to update the Queue : 
 
 
+<img width="434" alt="Screenshot 2022-12-14 at 11 53 27 AM" src="https://user-images.githubusercontent.com/113635391/207521821-f82640b9-c729-4cc6-ab1f-31ee1fc14454.png">
 
 
 
@@ -120,11 +127,6 @@ The following assumptions/restrictions are taken while proposing the practical v
 
 This is the A3 that the proposed algorithm refers to.
 
-  
-  
-  
-  
-  
 
 ### Note : 
 
@@ -145,7 +147,7 @@ The algorithm can be seen as an extension of the standard GAN training procedure
 
 - The authors are comparing the performance of the proposed GAN algorithm with respect to the standard GAN's performance in the following datasets:
 
-		- MNIST, CelebA [[8]](#8),multi-modal gaussian.
+		- MNIST, CelebA,multi-modal gaussian.
 
 - The comparison is with respect to the following aspects:
 
@@ -165,14 +167,47 @@ The algorithm can be seen as an extension of the standard GAN training procedure
 		C=0.01
 - For the gaussian dataset mixture, use a latent space dimension as 2. 
 - I have implemented GAN training using CelebA dataset and generated 100 images using the trained generator. The noise follows Normal distribution. I have given the images generated using standard GAN and the proposed approach. For GAN, the DC GAN architecture is used.
-   image_1,
-   image_2,
-- To analyse the improvement in the modal collapse aspect, I have used multi-modal Gaussian. The heat map of the dataset is given in the figure. Symmetrical architectures are used for the Generator as well as for the Discriminator.
-	original image-heat map
-	image_normal
-	image_FTRL
-	
+<center>
+<p> 
+  <img src="https://user-images.githubusercontent.com/113635391/207524568-d2150269-978e-42e8-8d4e-7e477c5ed842.png" width="400" height="400" />
+</p>
 
+<p>
+<em>image_caption</em>
+</p>
+<p>
+<img src="https://user-images.githubusercontent.com/113635391/207524640-0ddc833e-28cd-4227-be21-de5bf0fcd5b1.png" width="400" height="400" />
+</p>
+<p>
+<em>image_caption_2</em>
+</p>
+</center>
+
+- To analyse the improvement in the modal collapse aspect, I have used multi-modal Gaussian. The heat map of the dataset is given in the figure. Symmetrical architectures are used for the Generator as well as for the Discriminator.
+	
+	<center>
+	<p> 
+	  <img src="https://user-images.githubusercontent.com/113635391/207527253-7bbe527c-af47-4362-922f-8c317b367b89.png" width="400" height="400" />
+	</p>
+
+	<p>
+	<em>image_caption_1</em>
+	</p>
+	<p>
+	<img src="https://user-images.githubusercontent.com/113635391/207527285-f63babf9-4937-46b1-a613-a2a5744c7200.png" width="400" height="400" />
+	</p>
+	<p>
+	<em>image_caption_2</em>
+	</p>
+	
+	<p>
+	<img src="https://user-images.githubusercontent.com/113635391/207527337-18706775-e812-4d92-a00d-b69e8bfd188e.png" width="400" height="400" />
+	</p>
+	<p>
+	<em>image_caption_3</em>
+	</p>
+	</center>
+	
 # Learning/Takeaways:
 -  There were no implementations available as the reference. So I have decided to build on top of standard GAN architectures, and the code will be available on "paper with code" as well as in the following GitHub repo :
 - For the same problem, multiple solutions(Papers) were available. But I couldn't get if there are any connections across the solutions, whether one implies the other.
